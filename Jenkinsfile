@@ -72,7 +72,7 @@ pipeline {
 		   options {
                 timeout(time: 60, unit: "SECONDS")
             }
-         // agent {label 'linuxslave1'}
+          agent {label 'linuxslave1'}
           steps {
              script { 
             try {
@@ -99,7 +99,7 @@ pipeline {
 		   options {
                 timeout(time: 60, unit: "SECONDS")
             }
-          //agent {label 'linuxslave1'}
+          agent {label 'linuxslave1'}
           steps {
              script { 
             try {
