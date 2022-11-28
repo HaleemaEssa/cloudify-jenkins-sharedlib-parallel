@@ -52,8 +52,9 @@ pipeline {
 	    //git branch: 'main', url: 'https://github.com/HaleemaEssa/rpi-blynk.git'
             //sh 'docker build -t haleema/docker-rpi:latest .'
             //dockerBuild("haleema/docker-rpi:latest")
-	    sh 'docker run --privileged -t haleema/docker-rpi-dht'
-            sleep(time: 3, unit: "SECONDS")
+	    sleep(time: 3, unit: "SECONDS")
+            sh 'docker run --privileged -t haleema/docker-rpi-dht'
+            sleep(time: 4, unit: "SECONDS")
             //sh 'docker run --privileged -t haleema/docker-rpi'
             //dockerRunPi("haleema/docker-rpi")
 	    //dockerRunPi("haleema/docker-rpi-blynk")
@@ -81,8 +82,9 @@ pipeline {
 	    //git branch: 'main', url: 'https://github.com/HaleemaEssa/rpi-blynk.git'
             //sh 'docker build -t haleema/docker-rpi:latest .'
             //dockerBuild("haleema/docker-rpi:latest")
-	    sh 'docker run --privileged -t haleema/docker-rpi-flame'
             sleep(time: 3, unit: "SECONDS")
+	    sh 'docker run --privileged -t haleema/docker-rpi-flame'
+            sleep(time: 4, unit: "SECONDS")
             //sh 'docker run --privileged -t haleema/docker-rpi'
             //dockerRunPi("haleema/docker-rpi")
 	    //dockerRunPi("haleema/docker-rpi-blynk")
@@ -108,8 +110,9 @@ pipeline {
 	    //git branch: 'main', url: 'https://github.com/HaleemaEssa/rpi-blynk.git'
             //sh 'docker build -t haleema/docker-rpi:latest .'
             //dockerBuild("haleema/docker-rpi:latest")
-	    sh 'docker run --privileged -t haleema/docker-rpi-sound'
             sleep(time: 3, unit: "SECONDS")
+	    sh 'docker run --privileged -t haleema/docker-rpi-sound'
+            sleep(time: 4, unit: "SECONDS")
             //sh 'docker run --privileged -t haleema/docker-rpi'
             //dockerRunPi("haleema/docker-rpi")
 	    //dockerRunPi("haleema/docker-rpi-blynk")
