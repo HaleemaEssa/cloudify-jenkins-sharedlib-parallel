@@ -37,13 +37,13 @@ pipeline {
         }
 	  
 	stage('Data Transfering b/w RPi & Edge') {
-		agent {label 'linuxslave1'}
+		//agent {label 'linuxslave1'}
 	parallel {
 	       stage('dht-sensor') {
 		   options {
                 timeout(time: 60, unit: "SECONDS")
             }
-          //agent {label 'linuxslave1'}
+          agent {label 'linuxslave1'}
           steps {
              script { 
             try {
