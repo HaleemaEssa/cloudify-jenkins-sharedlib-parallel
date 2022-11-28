@@ -35,6 +35,7 @@ pipeline {
               sh 'cat start-execution.txt'
             }
         }
+	  
 	stage('Data Transfering b/w RPi & Edge') {
 	parallel {
 	       stage('dht-sensor') {
@@ -125,19 +126,15 @@ pipeline {
 	
 	
 	
-    stage('Data Transfering b/w RPi & Edge') {
-     // parallel {
-	       stage('On-RPI') {
-	       parallel {
+    stage('On-RPI') {
 		   options {
                 timeout(time: 30, unit: "SECONDS")
             }
           agent {label 'linuxslave1'}
-	  stage ('dht-sensor')
           steps {
              script { 
             try {
-            sh 'echo "send-data" '
+            sh 'echo "rpi" '
             //git branch: 'main', url: 'https://github.com/HaleemaEssa/first_jenkins_project.git'
 	    git branch: 'main', url: 'https://github.com/HaleemaEssa/rpi-blynk.git'
             //sh 'docker build -t haleema/docker-rpi:latest .'
@@ -147,12 +144,7 @@ pipeline {
             //sh 'docker run --privileged -t haleema/docker-rpi'
             //dockerRunPi("haleema/docker-rpi")
 	    //dockerRunPi("haleema/docker-rpi-blynk")
-	    //sh 'docker run --privileged -t haleema/docker-rpi-dht'
-	    //sh 'docker run --privileged -t haleema/docker-rpi-flame'
-	    //sh 'docker run --privileged -t haleema/docker-rpi-soung'
-  	    sleep(time: 3, unit: "SECONDS")
-	    sh 'docker kill $(docker ps -q)'
-	     sleep(time: 3, unit: "SECONDS")
+      sh 'docker kill $(docker ps -q)'
       sh 'docker run --privileged -t haleema/docker-rpi-blynk'
             sleep(time: 4, unit: "SECONDS")
                } catch (Throwable e) {
