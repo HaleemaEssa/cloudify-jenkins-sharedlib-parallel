@@ -53,7 +53,7 @@ pipeline {
             //sh 'docker build -t haleema/docker-rpi:latest .'
             //dockerBuild("haleema/docker-rpi:latest")
 	    sleep(time: 2, unit: "SECONDS")
-            sh 'docker run --privileged -t haleema/docker-rpi-dht'
+            sh 'docker run --privileged haleema/docker-rpi-dht'
             sleep(time: 2, unit: "SECONDS")
             //sh 'docker run --privileged -t haleema/docker-rpi'
             //dockerRunPi("haleema/docker-rpi")
@@ -83,7 +83,7 @@ pipeline {
             //sh 'docker build -t haleema/docker-rpi:latest .'
             //dockerBuild("haleema/docker-rpi:latest")
             sleep(time: 2, unit: "SECONDS")
-	    sh 'docker run --privileged -t haleema/docker-rpi-flame'
+	    sh 'docker run --privileged haleema/docker-rpi-flame'
             sleep(time: 2, unit: "SECONDS")
             //sh 'docker run --privileged -t haleema/docker-rpi'
             //dockerRunPi("haleema/docker-rpi")
@@ -108,7 +108,7 @@ pipeline {
             sh 'echo "sound-sensor-tasks" '
             //git branch: 'main', url: 'https://github.com/HaleemaEssa/first_jenkins_project.git'
 	    //git branch: 'main', url: 'https://github.com/HaleemaEssa/rpi-blynk.git'
-            //sh 'docker build -t haleema/docker-rpi:latest .'
+            //sh 'docker build haleema/docker-rpi:latest .'
             //dockerBuild("haleema/docker-rpi:latest")
             sleep(time: 2, unit: "SECONDS")
 	    sh 'docker run --privileged -t haleema/docker-rpi-sound'
