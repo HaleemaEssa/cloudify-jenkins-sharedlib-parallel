@@ -56,7 +56,7 @@ pipeline {
             //sh 'docker run --privileged -t haleema/docker-rpi'
             //dockerRunPi("haleema/docker-rpi")
 	    //dockerRunPi("haleema/docker-rpi-blynk")
-            sleep(time: 2, unit: "SECONDS")
+            //sleep(time: 2, unit: "SECONDS")
                } catch (Throwable e) {
                         echo "Caught ${e.toString()}"
                         currentBuild.result = "SUCCESS" //currentBuild.result = 'SUCCESS'
@@ -85,7 +85,7 @@ pipeline {
             //sh 'docker run --privileged -t haleema/docker-rpi'
             //dockerRunPi("haleema/docker-rpi")
 	    //dockerRunPi("haleema/docker-rpi-blynk")
-            sleep(time: 2, unit: "SECONDS")
+            //sleep(time: 2, unit: "SECONDS")
                } catch (Throwable e) {
                         echo "Caught ${e.toString()}"
                         currentBuild.result = "SUCCESS" //currentBuild.result = 'SUCCESS'
@@ -112,7 +112,7 @@ pipeline {
             //sh 'docker run --privileged -t haleema/docker-rpi'
             //dockerRunPi("haleema/docker-rpi")
 	    //dockerRunPi("haleema/docker-rpi-blynk")
-            sleep(time: 2, unit: "SECONDS")
+            //sleep(time: 2, unit: "SECONDS")
                } catch (Throwable e) {
                         echo "Caught ${e.toString()}"
                         currentBuild.result = "SUCCESS" //currentBuild.result = 'SUCCESS'
