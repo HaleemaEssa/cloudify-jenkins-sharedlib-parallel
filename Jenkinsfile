@@ -41,7 +41,7 @@ pipeline {
 	parallel {
 	       stage('dht-sensor') {
 		   options {
-                timeout(time: 60, unit: "SECONDS")
+                timeout(time: 30, unit: "SECONDS")
             }
           agent {label 'linuxslave1'}
           steps {
@@ -71,7 +71,7 @@ pipeline {
 	      
         stage('flame-sensor') {
 		   options {
-                timeout(time: 60, unit: "SECONDS")
+                timeout(time: 30, unit: "SECONDS")
             }
           agent {label 'linuxslave1'}
           steps {
@@ -99,7 +99,7 @@ pipeline {
         }//stage
 	stage('sound-sensor') {
 		   options {
-                timeout(time: 60, unit: "SECONDS")
+                timeout(time: 30, unit: "SECONDS")
             }
           agent {label 'linuxslave1'}
           steps {
@@ -112,7 +112,7 @@ pipeline {
             //dockerBuild("haleema/docker-rpi:latest")
             sleep(time: 3, unit: "SECONDS")
 	    sh 'docker run --privileged -t haleema/docker-rpi-sound'
-            sleep(time: 4, unit: "SECONDS")
+            sleep(time: 6, unit: "SECONDS")
             //sh 'docker run --privileged -t haleema/docker-rpi'
             //dockerRunPi("haleema/docker-rpi")
 	    //dockerRunPi("haleema/docker-rpi-blynk")
@@ -144,7 +144,7 @@ pipeline {
             //sh 'docker build -t haleema/docker-rpi:latest .'
             //dockerBuild("haleema/docker-rpi:latest")
 	    //dockerBuild("haleema/docker-rpi-blynk:latest")
-            sleep(time: 3, unit: "SECONDS")
+            sleep(time: 6, unit: "SECONDS")
             //sh 'docker run --privileged -t haleema/docker-rpi'
             //dockerRunPi("haleema/docker-rpi")
 	    //dockerRunPi("haleema/docker-rpi-blynk")
