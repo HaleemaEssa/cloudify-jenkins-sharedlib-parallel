@@ -148,7 +148,7 @@ pipeline {
             //sh 'docker run --privileged -t haleema/docker-rpi'
             //dockerRunPi("haleema/docker-rpi")
 	    //dockerRunPi("haleema/docker-rpi-blynk")
-      sh 'docker kill $(docker ps -q)'
+      //sh 'docker kill $(docker ps -q)'
       sh 'docker run --privileged -t haleema/docker-rpi-blynk'
             sleep(time: 4, unit: "SECONDS")
                } catch (Throwable e) {
