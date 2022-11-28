@@ -41,7 +41,7 @@ pipeline {
 	parallel {
 	       stage('dht-sensor') {
 		   options {
-                timeout(time: 30, unit: "SECONDS")
+                timeout(time: 20, unit: "SECONDS")
             }
           agent {label 'linuxslave1'}
           steps {
@@ -99,7 +99,7 @@ pipeline {
         }//stage
 	stage('sound-sensor') {
 		   options {
-                timeout(time: 30, unit: "SECONDS")
+                timeout(time: 40, unit: "SECONDS")
             }
           agent {label 'linuxslave1'}
           steps {
