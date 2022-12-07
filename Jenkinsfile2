@@ -188,8 +188,11 @@ pipeline {
           stage('Push Docker Images of Cloud') {
           agent {label 'server'}
           steps {
+	  
+	   sh 'docker tag haleema/docker-edge1:latest'
 	  git branch: 'main', url: 'https://github.com/HaleemaEssa/jenkins-cloud.git'
           sh 'docker push haleema/docker-cloud'
+	  sh 'docker tag haleema/docker-edge2:latest'
 	  git branch: 'main', url: 'https://github.com/HaleemaEssa/jenkins-cloud-visualization.git'
           sh 'docker push haleema/docker-cloud2'
          
