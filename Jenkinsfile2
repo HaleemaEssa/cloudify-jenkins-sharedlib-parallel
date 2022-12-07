@@ -133,13 +133,13 @@ pipeline {
            options {
                 timeout(time: 60, unit: "SECONDS")
             }     
-          agent {label 'server'} //server or aws
+          agent {label 'aws'} //server or aws
           steps {
             script { 
             try {
             sh 'echo "cloud" '
             git branch: 'main', url: 'https://github.com/HaleemaEssa/jenkins-cloud.git' //, credentialsId: 'cloudifyjenkins'
-            sh 'docker build -t haleema/docker-cloud:latest .'
+            //sh 'docker build -t haleema/docker-cloud:latest .'
             //dockerBuild("haleema/docker-cloud:latest")
             sh 'docker run -v "${PWD}:/data" -t haleema/docker-cloud'
             //dockerRun("haleema/docker-cloud")
@@ -153,7 +153,7 @@ pipeline {
           }
         }
     stage('On-Cloud-visulization') {
-          agent {label 'server'} //server or aws
+          agent {label 'aws'} //server or aws
       steps {
             sh 'echo "cloud-visualization" '
             git branch: 'main', url: 'https://github.com/HaleemaEssa/jenkins-cloud-visualization.git'
@@ -186,13 +186,13 @@ pipeline {
           }
           }
           stage('Push Docker Images of Cloud') {
-          agent {label 'server'}
+          agent {label 'aws'}
           steps {
 	  
-	   sh 'docker tag haleema/docker-edge1:latest'
+	   //sh 'docker tag haleema/docker-edge1:latest'
 	  git branch: 'main', url: 'https://github.com/HaleemaEssa/jenkins-cloud.git'
           sh 'docker push haleema/docker-cloud'
-	  sh 'docker tag haleema/docker-edge2:latest'
+	  //sh 'docker tag haleema/docker-edge2:latest'
 	  git branch: 'main', url: 'https://github.com/HaleemaEssa/jenkins-cloud-visualization.git'
           sh 'docker push haleema/docker-cloud2'
          
