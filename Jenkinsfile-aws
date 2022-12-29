@@ -133,7 +133,7 @@ pipeline {
            options {
                 timeout(time: 160, unit: "SECONDS")
             }     
-          agent {label 'aws'} //server or aws
+          agent {label 'server'} //server or aws
           steps {
             script { 
             try {
@@ -153,7 +153,7 @@ pipeline {
           }
         }
     stage('On-Cloud-visulization') {
-          agent {label 'aws'} //server or aws
+          agent {label 'server'} //server or aws
       steps {
             sh 'echo "cloud-visualization" '
             git branch: 'main', url: 'https://github.com/HaleemaEssa/jenkins-cloud-visualization.git'
@@ -186,7 +186,7 @@ pipeline {
           }
           }
           stage('Push Docker Images of Cloud') {
-          agent {label 'aws'}
+          agent {label 'server'}
           steps {
 	  
 	   //sh 'docker tag haleema/docker-edge1:latest'
