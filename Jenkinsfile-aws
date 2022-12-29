@@ -169,7 +169,7 @@ pipeline {
 	       stage('Push Docker Images of RPI') {
           agent {label 'linuxslave1'}
           steps {
-	  git branch: 'main', url: 'https://github.com/HaleemaEssa/rpi-blynk.git'
+	  git braawsnch: 'main', url: 'https://github.com/HaleemaEssa/rpi-blynk.git'
           sh 'docker push haleema/docker-rpi-blynk'
           }
           }
