@@ -131,7 +131,7 @@ pipeline {
        
     stage('Receiving Data in Cloud VM') {
            options {
-                timeout(time: 160, unit: "SECONDS")
+                timeout(time: 60, unit: "SECONDS")
             }     
           agent {label 'aws'} //server or aws
           steps {
