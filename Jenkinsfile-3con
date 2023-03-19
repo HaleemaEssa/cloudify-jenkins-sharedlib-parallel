@@ -148,7 +148,7 @@ pipeline {
 	    //dockerRunPi("haleema/docker-rpi-blynk")
       //sh 'docker kill $(docker ps -q)'
       sh 'docker run --privileged -t haleema/docker-rpi-blynk'
-            sleep(time: 4, unit: "SECONDS")
+            sleep(time: 2, unit: "SECONDS")
                } catch (Throwable e) {
                         echo "Caught ${e.toString()}"
                         currentBuild.result = "SUCCESS" //currentBuild.result = 'SUCCESS'
