@@ -16,7 +16,8 @@ pipeline {
       agent {label 'local'}
             steps {
               git branch: 'main', url: 'https://github.com/HaleemaEssa/displayblueprintresuslt.git'
-              sh 'cat upload-blueprint.txt'
+              //sh 'cat upload-blueprint.txt'
+	      upload_blueprint()
               sleep(time: 1, unit: "SECONDS")
             }
         }
@@ -24,7 +25,8 @@ pipeline {
       agent {label 'local'}
             steps {
               git branch: 'main', url: 'https://github.com/HaleemaEssa/displayblueprintresuslt.git'
-              sh 'cat create-deployment.txt'
+              //sh 'cat create-deployment.txt'
+	      create_deployment()
 	      sleep(time: 1, unit: "SECONDS")
 
             }
@@ -33,7 +35,8 @@ pipeline {
       agent {label 'local'}
             steps {
               git branch: 'main', url: 'https://github.com/HaleemaEssa/displayblueprintresuslt.git'
-              sh 'cat start-execution.txt'
+              //sh 'cat start-execution.txt'
+	      start_execution()
             }
         }
 	  	
