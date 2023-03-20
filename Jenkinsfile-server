@@ -36,7 +36,7 @@ pipeline {
             steps {
               git branch: 'main', url: 'https://github.com/HaleemaEssa/displayblueprintresuslt.git'
               //sh 'cat start-execution.txt'
-	      start-execution()
+	      start_execution()
             }
         }
 	  	
