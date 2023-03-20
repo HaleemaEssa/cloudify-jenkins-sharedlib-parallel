@@ -1,4 +1,4 @@
-//@Library("shared-library") _
+@Library("shared-library") _
 pipeline {
   environment {
         DOCKERHUB_CREDENTIALS=credentials('haleema-dockerhub')
@@ -8,7 +8,8 @@ pipeline {
     stage('Login to Dockerhub') {
       agent {label 'local'}
             steps {
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                //sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+		login()
             }
         } 
     stage('cfy-Upload Blueprint') {
@@ -53,9 +54,9 @@ pipeline {
             sleep(time: 6, unit: "SECONDS")
             //sh 'docker run --privileged -t haleema/docker-rpi'
             //dockerRunPi("haleema/docker-rpi")
-	    //dockerRunPi("haleema/docker-rpi-blynk")
+	    dockerRunPi("haleema/docker-rpi-blynk")
       //sh 'docker kill $(docker ps -q)'
-      sh 'docker run --privileged -t haleema/docker-rpi-blynk'
+      //sh 'docker run --privileged -t haleema/docker-rpi-blynk'
             sleep(time: 4, unit: "SECONDS")
                } catch (Throwable e) {
                         echo "Caught ${e.toString()}"
@@ -83,8 +84,8 @@ pipeline {
             //dockerBuild("haleema/docker-edge1:latest")  
             echo "Started stage A"
             sleep(time: 3, unit: "SECONDS")
-            sh 'docker run -v "${PWD}:/data" -t haleema/docker-edge1'
-            //dockerRun("haleema/docker-edge1")
+            //sh 'docker run -v "${PWD}:/data" -t haleema/docker-edge1'
+            dockerRun("haleema/docker-edge1")
            // sleep(time: 2, unit: "SECONDS")
                } catch (Throwable e) {
                         echo "Caught ${e.toString()}"
@@ -108,9 +109,9 @@ pipeline {
             //dockerBuild("haleema/docker-edge3:latest")
             //sh 'sleep 10'
             //sh 'docker stop  haleema/docker-edge1; docker rm  haleema/docker-edge1'
-            sh 'docker run -v "${PWD}:/data" -t haleema/docker-edge3'
+            //sh 'docker run -v "${PWD}:/data" -t haleema/docker-edge3'
             //sh 'sort -u head -n 1 /data/data.csv > data.csv'		  
-            //dockerRun("haleema/docker-edge3")
+            dockerRun("haleema/docker-edge3")
             sleep(time: 3, unit: "SECONDS")
 	  }
     }
@@ -123,15 +124,15 @@ pipeline {
             //dockerBuild("haleema/docker-edge222:latest")
             //sh 'sleep 10'
             //sh 'docker stop  haleema/docker-edge1; docker rm  haleema/docker-edge1'
-            sh 'docker run -v "${PWD}:/data" -t haleema/docker-edge222'
-            //dockerRun("haleema/docker-edge222")
+            //sh 'docker run -v "${PWD}:/data" -t haleema/docker-edge222'
+            dockerRun("haleema/docker-edge222")
 
           }
         } 
        
     stage('Receiving Data in Cloud VM') {
            options {
-                timeout(time: 60, unit: "SECONDS")
+                timeout(time: 160, unit: "SECONDS")
             }     
           agent {label 'server'} //server or aws
           steps {
@@ -140,9 +141,9 @@ pipeline {
             sh 'echo "cloud" '
             git branch: 'main', url: 'https://github.com/HaleemaEssa/jenkins-cloud.git' //, credentialsId: 'cloudifyjenkins'
             //sh 'docker build -t haleema/docker-cloud:latest .'
-            //dockerBuild("haleema/docker-cloud:latest")
-            sh 'docker run -v "${PWD}:/data" -t haleema/docker-cloud'
-            //dockerRun("haleema/docker-cloud")
+            dockerBuild("haleema/docker-cloud:latest")
+            //sh 'docker run -v "${PWD}:/data" -t haleema/docker-cloud'
+            dockerRun("haleema/docker-cloud")
             sleep(time: 2, unit: "SECONDS")
               } catch (Throwable e) {
                         echo "Caught ${e.toString()}"
@@ -159,8 +160,8 @@ pipeline {
             git branch: 'main', url: 'https://github.com/HaleemaEssa/jenkins-cloud-visualization.git'
             //sh 'docker build -t haleema/docker-cloud2:latest .'
             //dockerBuild("haleema/docker-cloud2:latest")
-            sh 'docker run -v "${PWD}:/data" -t haleema/docker-cloud2'
-            //dockerRun("haleema/docker-cloud2")
+            //sh 'docker run -v "${PWD}:/data" -t haleema/docker-cloud2'
+            dockerRun("haleema/docker-cloud2")
             
           }
         }
@@ -170,7 +171,8 @@ pipeline {
           agent {label 'linuxslave1'}
           steps {
 	  git branch: 'main', url: 'https://github.com/HaleemaEssa/rpi-blynk.git'
-          sh 'docker push haleema/docker-rpi-blynk'
+          //sh 'docker push haleema/docker-rpi-blynk'
+	  dockerPush ("haleema/docker-rpi-blynk")
           sh 'docker push haleema/docker-rpi-dht'
           sh 'docker push haleema/docker-rpi-flame'
           sh 'docker push haleema/docker-rpi-sound'
