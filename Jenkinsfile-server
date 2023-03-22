@@ -73,7 +73,7 @@ pipeline {
 	      
         stage('Receive Data') {
 		options {
-                timeout(time: 30, unit: "SECONDS")
+                timeout(time: 180, unit: "SECONDS")
             }
    
           agent {label 'local'}
