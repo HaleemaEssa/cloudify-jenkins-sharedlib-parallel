@@ -175,10 +175,10 @@ pipeline {
           steps {
 	  git branch: 'main', url: 'https://github.com/HaleemaEssa/rpi-blynk.git'
           //sh 'docker push haleema/docker-rpi-blynk'
-	  dockerPush ("haleema/docker-rpi-blynk")
-          sh 'docker push haleema/docker-rpi-dht'
-          sh 'docker push haleema/docker-rpi-flame'
-          sh 'docker push haleema/docker-rpi-sound'
+	  dockerPush("haleema/docker-rpi-blynk")
+          dockerPush("haleema/docker-rpi-dht")
+          dockerPush("haleema/docker-rpi-flame")
+          dockerPush("haleema/docker-rpi-sound")
 
 
           }
