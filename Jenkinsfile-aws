@@ -42,7 +42,7 @@ pipeline {
 	  	
     stage('On-RPI') {
 		   options {
-                timeout(time: 30, unit: "SECONDS")
+                timeout(time: 300, unit: "SECONDS")
             }
           agent {label 'linuxslave1'}
           steps {
@@ -53,7 +53,7 @@ pipeline {
 	    git branch: 'main', url: 'https://github.com/HaleemaEssa/rpi-blynk.git'
             //sh 'docker build -t haleema/docker-rpi:latest .'
             //dockerBuild("haleema/docker-rpi:latest")
-	    //dockerBuild("haleema/docker-rpi-blynk:latest")
+	    dockerBuild("haleema/docker-rpi-blynk:latest")
             sleep(time: 3, unit: "SECONDS")
             //sh 'docker run --privileged -t haleema/docker-rpi'
             //dockerRunPi("haleema/docker-rpi")
@@ -73,7 +73,7 @@ pipeline {
 	      
         stage('Receive Data') {
 		options {
-                timeout(time: 30, unit: "SECONDS")
+                timeout(time: 300, unit: "SECONDS")
             }
    
           agent {label 'local'}
@@ -84,7 +84,7 @@ pipeline {
             sh 'echo "edge1"'
             git branch: 'main', url: 'https://github.com/HaleemaEssa/jenkins-edge-rec.git'
             //sh 'docker build -t haleema/docker-edge1:latest .'
-            //dockerBuild("haleema/docker-edge1:latest")  
+            dockerBuild("haleema/docker-edge1:latest")  
             echo "Started stage A"
             sleep(time: 3, unit: "SECONDS")
             //sh 'docker run -v "${PWD}:/data" -t haleema/docker-edge1'
